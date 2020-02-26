@@ -1,43 +1,43 @@
 package com.java.advanced.features.reflect.clazz;
 
-import com.java.advanced.features.reflect.Person;
+import com.java.advanced.features.reflect.Apple;
 
 public class GetClassTest {
     public static void main(String[] args) {
         // 1, 通过类对象获取
-        Person person = new Person();
-        Class personClass1 = person.getClass();
-        System.out.println("personClass1 = " + personClass1);
+        Apple apple = new Apple();
+        Class appleClass1 = apple.getClass();
+        System.out.println("appleClass1 = " + appleClass1);
         // 2, 通过类的 class 对象获取
-        Class personClass2 = Person.class;
-        System.out.println("personClass2 = " + personClass2);
+        Class appleClass2 = Apple.class;
+        System.out.println("appleClass2 = " + appleClass2);
         // 3, 通过全类名获取
-        Class personClass3 = null;
+        Class appleClass3 = null;
         try {
-            personClass3 = Class.forName("com.java.advanced.features.reflect.Person");
+            appleClass3 = Class.forName("com.java.advanced.features.reflect.Apple");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("personClass3 = " + personClass3);
+        System.out.println("appleClass3 = " + appleClass3);
         // 4, 通过 ClassLoader.loadClass()加载
-        Class personClass4 = null;
+        Class appleClass4 = null;
         try {
-            personClass4 = GetClassTest.class.getClassLoader().loadClass("com.java.advanced.features.reflect.Person");
+            appleClass4 = GetClassTest.class.getClassLoader().loadClass("com.java.advanced.features.reflect.Apple");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("personClass4 = " + personClass4);
+        System.out.println("appleClass4 = " + appleClass4);
 
-        System.out.println("result = " + (personClass1 == personClass2 && personClass2 == personClass3 && personClass3 == personClass4));
-
+        System.out.println("result = " + (appleClass1 == appleClass2
+                && appleClass2 == appleClass3
+                && appleClass3 == appleClass4));
     }
 }
 /*
 打印结果：
-personClass1 = class com.java.advanced.features.reflect.Person
-personClass2 = class com.java.advanced.features.reflect.Person
-personClass3 = class com.java.advanced.features.reflect.Person
-personClass4 = class com.java.advanced.features.reflect.Person
+appleClass1 = class com.java.advanced.features.reflect.Apple
+appleClass2 = class com.java.advanced.features.reflect.Apple
+appleClass3 = class com.java.advanced.features.reflect.Apple
+appleClass4 = class com.java.advanced.features.reflect.Apple
 result = true
-
  */
