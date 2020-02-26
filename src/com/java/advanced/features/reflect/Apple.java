@@ -36,6 +36,11 @@ public class Apple extends Fruit {
         return size;
     }
 
+    public void setSize(int size) {
+        checkSize(size);
+        this.size = size;
+    }
+
     public float getPrice() {
         return price;
     }
@@ -46,9 +51,15 @@ public class Apple extends Fruit {
         }
     }
 
-    void checkSize(int size) {
+    void checkSize(Integer size) {
         if (size > 1000) {
             throw new IllegalArgumentException("size is not valid, size = " + size);
         }
+    }
+
+    public boolean initColorAndPrice(String color, float price) {
+        this.color = color;
+        this.price = price;
+        return true;
     }
 }
