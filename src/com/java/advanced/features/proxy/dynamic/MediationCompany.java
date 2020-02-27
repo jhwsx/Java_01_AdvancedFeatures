@@ -2,30 +2,19 @@ package com.java.advanced.features.proxy.dynamic;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+import java.util.Arrays;
 
 public class MediationCompany implements InvocationHandler {
     // 真实的对象
     private Object realEstateCompany;
 
-    public Object getRealEstateCompany() {
-        return realEstateCompany;
-    }
-
     public void setRealEstateCompany(Object realEstateCompany) {
         this.realEstateCompany = realEstateCompany;
     }
 
-    /**
-     * 通过 Proxy，获取动态代理对象
-     */
-    public Object getProxyInstance() {
-        return Proxy.newProxyInstance(realEstateCompany.getClass().getClassLoader(),
-                realEstateCompany.getClass().getInterfaces(), this);
-    }
-
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("invoke(): proxy = " + proxy.getClass() + ", method = " + method + ", args = " + Arrays.toString(args));
         doSomethingBefore();
         Object result = method.invoke(realEstateCompany, args);
         doSomethingAfter();
