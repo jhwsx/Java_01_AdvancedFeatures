@@ -15,7 +15,7 @@ public class ThreadLocalDemo {
                 super.run();
                 booleanThreadLocal.set(false);
                 System.out.println(Thread.currentThread().getName() + ", booleanThreadLocal.get()="+booleanThreadLocal.get());
-            }
+            } 
         }.start();
         new Thread("Thread2") {
             @Override
