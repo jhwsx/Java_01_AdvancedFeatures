@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 只给需要同步的代码加锁，可以使线程争用时间变短，从而提高效率
+ * todo 实际操作中，如何进行识别哪些代码是真正需要加锁的呢？
  *
  * @author wangzhichao
  * @since 2020/3/30

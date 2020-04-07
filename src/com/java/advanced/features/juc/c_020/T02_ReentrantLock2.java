@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 针对 T01_ReentrantLock1，使用 ReentrantLock 替换 synchronized 来实现
- *
+ * 注意这种写法是固定的，先加锁，然后在 try ... finally 块中释放锁
  * @author wangzhichao
  * @since 2020/3/31
  */
@@ -28,7 +28,7 @@ public class T02_ReentrantLock2 {
                     m2();
                 }
             }
-            System.out.println("m2...........end");
+            System.out.println("m1...........end");
         } finally {
             lock.unlock();
         }

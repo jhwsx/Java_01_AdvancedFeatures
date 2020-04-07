@@ -8,6 +8,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 读写锁
+ * 读写锁里，读锁是共享锁，写锁是排他锁。
+ * 它适用于读操作多，而写操作少的场景。
+ * <p>
+ * 当一个读线程在读操作时，允许其他读线程也进行读操作，这就是读锁的共享性；
+ * 当一个写线程在写操作时，不允许其他写线程进行写操作，这就是写锁的排他性。
  *
  * @author wangzhichao
  * @since 2020/3/31

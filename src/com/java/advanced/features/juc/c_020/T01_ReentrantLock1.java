@@ -22,7 +22,7 @@ public class T01_ReentrantLock1 {
                 m2();
             }
         }
-        System.out.println("m2...........end");
+        System.out.println("m1...........end");
     }
 
     synchronized void m2() {

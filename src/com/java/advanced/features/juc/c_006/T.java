@@ -8,7 +8,7 @@ package com.java.advanced.features.juc.c_006;
  * 参考文章：内存可见性和原子性：Synchronized和Volatile的比较
  * https://blog.csdn.net/guyuealian/article/details/52525724
  * 视频资源：http://www.imooc.com/video/6775
- *
+ * todo 这个视频还没有看完。
  * @author wangzhichao
  * @since 2020/3/28
  */

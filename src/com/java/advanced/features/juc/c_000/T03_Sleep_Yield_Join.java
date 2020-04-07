@@ -60,6 +60,7 @@ public class T03_Sleep_Yield_Join {
 
         Thread t2 = new Thread(() -> {
             try {
+                // 在 t2 上调用 t1.join()，t2 必须等待 t1 运行完毕再继续 t2 的运行。
                 t1.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();

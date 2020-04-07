@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 示例：什么叫线程？
+ * 一个程序中不同的执行路径。
  *
  * @author wangzhichao
  * @since 2020/03/28

@@ -15,6 +15,8 @@ package com.java.advanced.features.juc.c_000;
  * TERMINATED
  * 已退出的线程处于这种状态。
  *
+ * 这个小程序可以打印出线程的所有状态。
+ *
  * @author wangzhichao
  * @since 2020/3/28
  */
@@ -22,22 +24,31 @@ public class T04_ThreadState {
     static class MyThread extends Thread {
         @Override
         public void run() {
-//            System.out.println(this.getState());
-            for (int i = 0; i < 10; i++) {
+            synchronized (T04_ThreadState.class) {
+                System.out.println(Thread.currentThread().getName() + "获取锁");
+                for (int i = 0; i < 2; i++) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(i);
+                }
+                T04_ThreadState.class.notify();
                 try {
-                    Thread.sleep(500);
+                    T04_ThreadState.class.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println(i);
+                System.out.println(Thread.currentThread().getName() + "释放锁");
             }
         }
     }
 
-    static class LoopDamemonThread extends Thread {
+    static class LoopDaemonThread extends Thread {
         private MyThread myThread;
 
-        public LoopDamemonThread(MyThread myThread) {
+        public LoopDaemonThread(MyThread myThread) {
             this.myThread = myThread;
         }
 
@@ -58,16 +69,30 @@ public class T04_ThreadState {
     public static void main(String[] args) {
         MyThread t = new MyThread();
         System.out.println(t.getState());
-        LoopDamemonThread loopDamemonThread = new LoopDamemonThread(t);
-        loopDamemonThread.setDaemon(true);
-        loopDamemonThread.start();
+        // 这里用一个守护线程来获取 MyThread 的状态。
+        LoopDaemonThread loopDaemonThread = new LoopDaemonThread(t);
+        loopDaemonThread.setDaemon(true);
+        loopDaemonThread.start();
         t.start();
+        synchronized (T04_ThreadState.class) {
+            System.out.println(Thread.currentThread().getName() + "获取锁");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                T04_ThreadState.class.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            T04_ThreadState.class.notify();
+            System.out.println(Thread.currentThread().getName() + "释放锁");
+        }
         try {
             t.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-//        System.out.println(t.getState());
     }
 }

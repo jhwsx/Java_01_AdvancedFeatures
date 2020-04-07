@@ -54,6 +54,8 @@ public class T02_AtomicVsSyncVsLongAdder {
             threads[i] =
                     new Thread(() -> {
                         for (int k = 0; k < LOOP_COUNT; k++) {
+                            // 这里只是为了做测验，同步的代码是 count2++，而实际上同步 for 循环是更高效的
+                            // 不过，这样的话，和 AtomicLong，LongAdder 的锁级别就不一样，没有可比性。
                             synchronized (obj) {
                                 count2++;
                             }
