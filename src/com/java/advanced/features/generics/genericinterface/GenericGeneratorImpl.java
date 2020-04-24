@@ -10,6 +10,16 @@ class A {
     }
 }
 
+class B {
+    private static int count;
+    private final int i = count++;
+
+    @Override
+    public String toString() {
+        return "B " + i;
+    }
+}
+
 public class GenericGeneratorImpl<T> implements Generator<T> {
     // 变量 type 是一个 Class 引用，它指向某个 Class 对象，比如 int.class, String.class 等
     private Class<T> type;
@@ -37,6 +47,10 @@ public class GenericGeneratorImpl<T> implements Generator<T> {
         for (int i = 0; i < 5; i++) {
             System.out.println(generator.next());
         }
+        Generator<B> bGenerator = GenericGeneratorImpl.create(B.class);
+        for (int i = 0; i < 3; i++) {
+            System.out.println(bGenerator.next());
+        }
     }
 }
 
@@ -47,4 +61,7 @@ A 1
 A 2
 A 3
 A 4
+B 0
+B 1
+B 2
  */
