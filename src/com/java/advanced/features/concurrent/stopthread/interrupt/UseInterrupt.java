@@ -13,7 +13,7 @@ class MyRunnable implements Runnable {
             try {
                 wait();
             } catch (InterruptedException e) {
-                System.out.println(Thread.currentThread().getName() + "...." + e);
+                System.out.println(Thread.currentThread().getName() + "...." + e + ", isInterrupted() = " + Thread.currentThread().isInterrupted());
                 flagBean.setFlag(true);
             }
         }
