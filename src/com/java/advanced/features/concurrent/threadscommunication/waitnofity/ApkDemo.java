@@ -44,10 +44,10 @@ class ReleaseApkRunnable implements Runnable {
                     apk.versionName = "国内版";
                 }
                 apk.isForTest = true;
-                System.out.println("Release apk: "  + apk.apkName + "," + apk.versionName );
+                System.out.println("Release apk: " + apk.apkName + "," + apk.versionName);
                 apk.notify();
             }
-                x++;
+            x++;
         }
 
     }
@@ -77,7 +77,7 @@ class TestApkRunnable implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Test pass: "  + apk.apkName + "," + apk.versionName );
+                System.out.println("Test pass: " + apk.apkName + "," + apk.versionName);
                 apk.isForTest = false;
                 apk.notify();
             }

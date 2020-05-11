@@ -1,4 +1,4 @@
-package com.java.advanced.features.concurrent.threadscommunication.multiple.unsafe;
+package com.java.advanced.features.concurrent.threadscommunication.multiple.unsafe.unsafe2;
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +24,7 @@ class Apk {
         System.out.println(Thread.currentThread().getName() + "============>Release apk: " + this.apkName);
         code++;
         isForTest = true;
-        notifyAll();
+        notify();
     }
 
     public synchronized void testApk() {
@@ -43,7 +43,7 @@ class Apk {
         }
         System.out.println(Thread.currentThread().getName() + " Test Apk: " + this.apkName);
         isForTest = false;
-        notifyAll();
+        notify();
     }
 }
 

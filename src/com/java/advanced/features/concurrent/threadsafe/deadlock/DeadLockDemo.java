@@ -12,6 +12,7 @@ class TaskA implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println(Thread.currentThread().getName() + " wake up");
                 synchronized (DeadLockDemo.lock2) {
                     System.out.println(Thread.currentThread().getName() + " do other thing.");
                 }
@@ -33,6 +34,7 @@ class TaskB implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println(Thread.currentThread().getName() + " wake up");
                 synchronized (DeadLockDemo.lock1) {
                     System.out.println(Thread.currentThread().getName() + " do other thing.");
                 }
@@ -54,3 +56,13 @@ public class DeadLockDemo {
 
     }
 }
+
+/*
+打印结果：
+ThreadB do something.
+ThreadA do something.
+
+或者是
+ThreadA do something.
+ThreadB do something.
+ */
