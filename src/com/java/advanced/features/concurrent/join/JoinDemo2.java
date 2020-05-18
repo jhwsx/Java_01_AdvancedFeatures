@@ -4,6 +4,11 @@ class Task3 implements Runnable {
     }
     @Override
     public void run() {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println(Thread.currentThread().getName() + " is doing task.");
     }
 }
@@ -13,11 +18,13 @@ public class JoinDemo2 {
         for (int i = 0; i < 5; i++) {
             Thread thread = new Thread(new Task3(), "Thread " + i);
             thread.start();
+            System.out.println("<===========");
             try {
                 thread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("==========>");
         }
         System.out.println(Thread.currentThread().getName() + " is doing task.");
     }
