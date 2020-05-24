@@ -1,11 +1,14 @@
 package com.java.advanced.features.io.serialize.serializable;
 
-public class Person6 {
+public class Person7 {
 
     private String name;
     private int age;
+    // 在 Person6 的基础上添加了无参构造器
+    public Person7() {
+    }
 
-    public Person6(String name, int age) {
+    public Person7(String name, int age) {
         this.name = name;
         this.age = age;
     }

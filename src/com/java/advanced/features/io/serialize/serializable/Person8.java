@@ -1,11 +1,16 @@
 package com.java.advanced.features.io.serialize.serializable;
 
-public class Person6 {
+import java.io.Serializable;
+
+public class Person8 implements Serializable {
 
     private String name;
     private int age;
 
-    public Person6(String name, int age) {
+    public Person8() {
+    }
+
+    public Person8(String name, int age) {
         this.name = name;
         this.age = age;
     }
