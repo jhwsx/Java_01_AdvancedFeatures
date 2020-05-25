@@ -1,8 +1,8 @@
-package com.java.advanced.features.reflect.clazz;
+package com.java.advanced.features.reflect.basicclass;
 
 import com.java.advanced.features.reflect.Apple;
 
-public class GetClassTest {
+public class _01_GetClassTest {
     public static void main(String[] args) {
         // 1, 通过类对象获取
         Apple apple = new Apple();
@@ -22,7 +22,7 @@ public class GetClassTest {
         // 4, 通过 ClassLoader.loadClass()加载
         Class appleClass4 = null;
         try {
-            appleClass4 = GetClassTest.class.getClassLoader().loadClass("com.java.advanced.features.reflect.Apple");
+            appleClass4 = _01_GetClassTest.class.getClassLoader().loadClass("com.java.advanced.features.reflect.Apple");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
