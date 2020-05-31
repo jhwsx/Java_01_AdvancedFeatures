@@ -2,10 +2,12 @@ package com.java.advanced.features.reflect.basicclass;
 
 import com.java.advanced.features.reflect.Fruit;
 import com.java.advanced.features.reflect.basicclass.OuterClass.StaticInnerClass;
+
 import java.io.Serializable;
 
 /**
  * https://stackoverflow.com/questions/15202997/what-is-the-difference-between-canonical-name-simple-name-and-class-name-in-jav
+ *
  * @author wangzhichao
  * @since 2020/5/25
  */
@@ -19,19 +21,19 @@ public class _02_GetClassNamePackageNameTest {
         Class<OuterClass> outerClassClass = OuterClass.class;
         Class<OuterClass.StaticInnerClass> staticInnerClassClass = OuterClass.StaticInnerClass.class;
 
+        print(Fruit.class, "simpleClass");
+
         print(outerClassClass, "outerClassClass");
 
         print(staticInnerClassClass, "staticInnerClassClass");
 
         // 对于数组
-        String[] array = new String[]{};
-        Class<? extends String[]> arrayClass = array.getClass();
-        print(arrayClass, "arrayClass");
+        print(String[].class, "1-arrayClass");
+        print(String[][].class, "2-arrayClass");
 
-        //
-        Class<? extends Serializable> anonymousInnerClass = new Serializable() {
-        }.getClass();
-        print(anonymousInnerClass, "anonymousInnerClass");
+        // 匿名内部类
+        print(new Serializable() {
+        }.getClass(), "anonymousInnerClass");
     }
 
     private static <T> void print(Class<T> clazz, String label) {
@@ -41,13 +43,19 @@ public class _02_GetClassNamePackageNameTest {
         System.out.println(label + ".getTypeName() = " + clazz.getTypeName());
         Package clazzPackage = clazz.getPackage();
         if (clazzPackage != null) {
-            System.out.println(label +" packageName = " + clazzPackage.getName());
+            System.out.println(label + " packageName = " + clazzPackage.getName());
         }
         System.out.println();
     }
 }
 /*
 打印结果：
+class.getName() = com.java.advanced.features.reflect.Fruit
+class.getSimpleName() = Fruit
+class.getCanonicalName() = com.java.advanced.features.reflect.Fruit
+class.getTypeName() = com.java.advanced.features.reflect.Fruit
+class packageName = com.java.advanced.features.reflect
+
 outerClassClass.getName() = com.java.advanced.features.reflect.basicclass.OuterClass
 outerClassClass.getSimpleName() = OuterClass
 outerClassClass.getCanonicalName() = com.java.advanced.features.reflect.basicclass.OuterClass

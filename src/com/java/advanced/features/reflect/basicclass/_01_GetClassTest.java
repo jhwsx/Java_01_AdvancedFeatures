@@ -1,43 +1,43 @@
 package com.java.advanced.features.reflect.basicclass;
 
-import com.java.advanced.features.reflect.Apple;
+import com.java.advanced.features.reflect.Fruit;
 
 public class _01_GetClassTest {
     public static void main(String[] args) {
         // 1, 通过类对象获取
-        Apple apple = new Apple();
-        Class appleClass1 = apple.getClass();
-        System.out.println("appleClass1 = " + appleClass1);
+        Fruit fruit = new Fruit();
+        Class fruitClass1 = fruit.getClass();
+        System.out.println("fruitClass1 = " + fruitClass1);
         // 2, 通过类的 class 对象获取
-        Class appleClass2 = Apple.class;
-        System.out.println("appleClass2 = " + appleClass2);
+        Class fruitClass2 = Fruit.class;
+        System.out.println("fruitClass2 = " + fruitClass2);
         // 3, 通过全类名获取
-        Class appleClass3 = null;
+        Class fruitClass3 = null;
         try {
-            appleClass3 = Class.forName("com.java.advanced.features.reflect.Apple");
+            fruitClass3 = Class.forName("com.java.advanced.features.reflect.Fruit");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("appleClass3 = " + appleClass3);
+        System.out.println("fruitClass3 = " + fruitClass3);
         // 4, 通过 ClassLoader.loadClass()加载
-        Class appleClass4 = null;
+        Class fruitClass4 = null;
         try {
-            appleClass4 = _01_GetClassTest.class.getClassLoader().loadClass("com.java.advanced.features.reflect.Apple");
+            fruitClass4 = _01_GetClassTest.class.getClassLoader().loadClass("com.java.advanced.features.reflect.Fruit");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("appleClass4 = " + appleClass4);
+        System.out.println("fruitClass4 = " + fruitClass4);
 
-        System.out.println("result = " + (appleClass1 == appleClass2
-                && appleClass2 == appleClass3
-                && appleClass3 == appleClass4));
+        System.out.println("result = " + (fruitClass1 == fruitClass2
+                && fruitClass2 == fruitClass3
+                && fruitClass3 == fruitClass4));
     }
 }
 /*
 打印结果：
-appleClass1 = class com.java.advanced.features.reflect.Apple
-appleClass2 = class com.java.advanced.features.reflect.Apple
-appleClass3 = class com.java.advanced.features.reflect.Apple
-appleClass4 = class com.java.advanced.features.reflect.Apple
+fruitClass1 = class com.java.advanced.features.reflect.Fruit
+fruitClass2 = class com.java.advanced.features.reflect.Fruit
+fruitClass3 = class com.java.advanced.features.reflect.Fruit
+fruitClass4 = class com.java.advanced.features.reflect.Fruit
 result = true
  */

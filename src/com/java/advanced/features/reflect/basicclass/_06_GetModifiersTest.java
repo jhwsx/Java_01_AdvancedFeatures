@@ -2,6 +2,7 @@ package com.java.advanced.features.reflect.basicclass;
 
 import java.lang.reflect.Modifier;
 import java.util.AbstractCollection;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,5 +31,16 @@ public class _06_GetModifiersTest {
         int modifiers2 = listClass.getModifiers();
         System.out.println("Modifier.toString(modifiers2) = " + Modifier.toString(modifiers2));
         System.out.println("Modifier.isInterface(modifiers2) = " + Modifier.isInterface(modifiers2));
+
+        System.out.println();
+
+        int modifiers3 = OuterInterface.InnerInterface.class.getModifiers();
+        System.out.println("modifiers3 = " + modifiers3);
+        System.out.println("Modifier.toString(modifiers3) = " + Modifier.toString(modifiers3));
+        System.out.println("Modifier.isPublic(modifiers3) = " + Modifier.isPublic(modifiers3));
+        System.out.println("Modifier.isAbstract(modifiers3) = " + Modifier.isAbstract(modifiers3));
+        System.out.println("Modifier.isStatic(modifiers3) = " + Modifier.isStatic(modifiers3));
+        System.out.println("Modifier.isInterface(modifiers3) = " + Modifier.isInterface(modifiers3));
+
     }
 }
