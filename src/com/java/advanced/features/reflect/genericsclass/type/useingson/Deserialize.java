@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.java.advanced.features.reflect.genericsclass.type.useingson.my.MyTypeToken;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
 /**
  * 在 gson 中反序列化的应用
@@ -42,6 +43,14 @@ public class Deserialize {
         Response<Data> r = gson.fromJson(json, type);
         System.out.println("r = " + r);
         System.out.println("r.data.getClass() = " + r.data.getClass());
+
+        // 解析数组
+        String json2 = "[\"Android\",\"Java\",\"Flutter\",\"Dart\"]";
+        Type type2 = new MyTypeToken<List<String>>() {
+        }.getType();
+        System.out.println("type2 = " + type2);
+        List<String> stringList = gson.fromJson(json2, type2);
+        System.out.println(stringList);
     }
 
 
