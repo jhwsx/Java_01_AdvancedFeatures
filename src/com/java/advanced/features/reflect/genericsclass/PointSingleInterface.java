@@ -2,7 +2,7 @@ package com.java.advanced.features.reflect.genericsclass;
 
 /**
  * @author wangzhichao
- * @since 2020/5/25
+ * @since 2020/6/7
  */
-public class IntegerArrayHolder implements Holder<Class<Integer>[]> {
+public interface PointSingleInterface<T> {
 }

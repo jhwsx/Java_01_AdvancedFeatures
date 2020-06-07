@@ -14,6 +14,7 @@ public class _03_TypeVariableTest {
         // 获取此类直接继承的接口对应的 Type 对象数组
         Type[] types = clazz.getGenericInterfaces(); // 即 PointInterface<T, Integer>
         for (Type type : types) {
+            System.out.println("type = " + type);
             // 判断是参数化类型
             if (type instanceof ParameterizedType) {
                 ParameterizedType parameterizedType = (ParameterizedType) type;
@@ -42,6 +43,7 @@ public class _03_TypeVariableTest {
 }
 
 /*
+type = com.java.advanced.features.reflect.genericsclass.PointInterface<T, java.lang.Integer>
 类型参数的名字为：T
 类型参数的上边界为：java.lang.Number
 类型参数的上边界为：java.io.Serializable

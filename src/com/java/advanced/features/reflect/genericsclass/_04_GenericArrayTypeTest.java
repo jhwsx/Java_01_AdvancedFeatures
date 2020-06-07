@@ -14,6 +14,7 @@ public class _04_GenericArrayTypeTest {
         // 获取此类直接实现的接口对应的 Type 对象数组
         Type[] types = clazz.getGenericInterfaces(); // Holder<Integer[]>
         for (Type type : types) {
+            System.out.println("type = " + type);
             // 是参数化类型
             if (type instanceof ParameterizedType) {
                 ParameterizedType parameterizedType = (ParameterizedType) type;
@@ -34,6 +35,7 @@ public class _04_GenericArrayTypeTest {
 }
 
 /*
-类型参数为：T[]
-类型参数的组件类型为：T
+type = com.java.advanced.features.reflect.genericsclass.Holder<java.lang.Class<java.lang.Integer>[]>
+类型参数为：java.lang.Class<java.lang.Integer>[]
+类型参数的组件类型为：java.lang.Class<java.lang.Integer>
  */

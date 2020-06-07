@@ -2,6 +2,8 @@ package com.java.advanced.features.reflect.genericsclass;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.util.Arrays;
 
 /**
  * @author wangzhichao
@@ -13,6 +15,7 @@ public class _02_GetGenericInterfacesTest {
         // 获取此类直接实现的泛型接口对应的 Type 对象数组
         Type[] types = clazz.getGenericInterfaces(); // 这里就是 PointInterface<String, Double>
         for (Type type : types) {
+            System.out.println(type);
             if (type instanceof ParameterizedType) {
                 ParameterizedType parameterizedType = (ParameterizedType) type;
                 // 获取替换类型参数的实际类型对应的 Type 对象的数组
@@ -27,10 +30,13 @@ public class _02_GetGenericInterfacesTest {
                 System.out.println("声明泛型接口的类型为：" + rawTypeClass.getName());
             }
         }
+        TypeVariable<Class<PointInterface>>[] typeParameters = PointInterface.class.getTypeParameters();
+        System.out.println(Arrays.toString(typeParameters));
     }
 }
 /*
 替换泛型接口的类型参数的实际类型为：java.lang.String
 替换泛型接口的类型参数的实际类型为：java.lang.Double
 声明泛型接口的类型为：com.java.advanced.features.reflect.genericsclass.PointInterface
+[T, U]
  */

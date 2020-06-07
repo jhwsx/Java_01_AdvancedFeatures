@@ -2,6 +2,8 @@ package com.java.advanced.features.reflect.genericsclass;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.util.Arrays;
 
 /**
  * @author wangzhichao
@@ -12,6 +14,7 @@ public class _01_GetGenericSuperClassTest {
         Class<PointImpl> clazz = PointImpl.class;
         // 返回表示此 Class 所表示的实体（类、接口、基本类型或 void）的直接超类的 Type。
         Type type = clazz.getGenericSuperclass(); // 获取 PointImpl.class 的超类
+        System.out.println("type = " + type);
         if (type instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) type;
             // 获取替换类型参数的实际类型对应的 Type 对象的数组
@@ -26,7 +29,7 @@ public class _01_GetGenericSuperClassTest {
             Class rawTypeClass = (Class) rawType;
             System.out.println("PointImpl 的父类类型：" + rawTypeClass.getName()); // Point
         }
-
+        System.out.println(Arrays.toString(Point.class.getTypeParameters()));
     }
 }
 // Type 的 5 种类型
@@ -39,4 +42,5 @@ public class _01_GetGenericSuperClassTest {
 /*
 替换泛型类的类型参数的实际类型为：java.lang.Integer
 PointImpl 的父类类型：com.java.advanced.features.reflect.genericsclass.Point
+[T]
  */
