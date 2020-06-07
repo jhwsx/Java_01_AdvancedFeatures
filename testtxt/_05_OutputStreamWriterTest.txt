@@ -1,0 +1,3 @@
+I love China
+I love ChinaGBK
+I love ChinaUTF-8
