@@ -1,4 +1,4 @@
-package com.java.advanced.features.jvm.klass;
+package com.java.advanced.features.jvm.klass._01;
 
 import java.util.LinkedList;
 import java.util.List;

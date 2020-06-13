@@ -1,4 +1,4 @@
-package com.java.advanced.features.jvm.klass;
+package com.java.advanced.features.jvm.klass._01;
 
 /**
  * 演示堆内存溢出（直接溢出）
