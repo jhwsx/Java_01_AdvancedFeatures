@@ -11,18 +11,10 @@ import java.io.Serializable;
  * @since 2020/5/24
  */
 public class Man3 extends Person7 implements Serializable  {
-    private double salary;
+    public double salary;
 
     public Man3(String name, int age, double salary) {
         super(name, age);
-        this.salary = salary;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
         this.salary = salary;
     }
 
@@ -30,15 +22,15 @@ public class Man3 extends Person7 implements Serializable  {
         // 先序列化本类对象
         oos.defaultWriteObject();
         // 再序列化父类的域
-        oos.writeObject(getName());
-        oos.writeInt(getAge());
+        oos.writeObject(name);
+        oos.writeInt(age);
     }
 
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         // 先反序列化本类对象
         ois.defaultReadObject();;
         // 再反序列化父类的域
-        setName((String) ois.readObject());
-        setAge(ois.readInt());
+        name = (String) ois.readObject();
+        age = ois.readInt();
     }
 }

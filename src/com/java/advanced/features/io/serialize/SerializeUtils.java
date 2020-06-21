@@ -3,7 +3,7 @@ package com.java.advanced.features.io.serialize;
 import java.io.*;
 
 public class SerializeUtils {
-    public static <T> void writeObject(String filePath, T obj) throws IOException {
+    public static void writeObject(String filePath, Object obj) throws IOException {
         FileOutputStream fos = new FileOutputStream(filePath);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(obj);

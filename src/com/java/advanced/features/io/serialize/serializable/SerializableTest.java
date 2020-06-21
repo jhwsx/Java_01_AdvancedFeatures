@@ -10,10 +10,10 @@ public class SerializableTest {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         // 第一组：Person1 没有实现序列化接口，报错：
-        //test1();
+//        test1();
 
         // 第二组：Person2 实现了序列化接口，正常
-        //test2();
+//        test2();
 
         // 第三组：Person3 实现了序列化接口，但是它的成员有没有实现序列化接口，报错：
 //        test3();
@@ -25,7 +25,7 @@ public class SerializableTest {
 //        test5();
 
         // 第六组 多引用写入, 两次写入，但取出的对象是一模一样的。
-        // test6();
+//         test6();
 
         // 解决多引用写入问题，使用 oos.reset();
          // test7();
@@ -35,29 +35,29 @@ public class SerializableTest {
 
         // 子类实现序列化,父类不实现序列化
         // 报错：java.io.InvalidClassException: com.java.advanced.features.io.serialize.serializable.Man; no valid constructor
-        // test9();
+//         test9();
 
         // 解决 test9 的报错，给父类添加空参构造器，但是父类的值不会被保存
 //         test10();
 
         // 解决 test10 的问题：让子类负责序列化（反序列化）父类的域
-        // test11();
+//         test11();
 
         // 父类实现了Serializable，子类没有, 子类可以进行序列化
 //         test12();
 
         // 序列化的时候多一个字段，反序列化的时候少一个字段，不会报错
         // 序列化的时候少一个字段，反序列化的时候多一个字段，不会报错
-//        test13();
+        test13();
 
         // 演示：writeReplace 先于writeObject, readResolve后于readObject
-        test14();
+//        test14();
 
         // 反序列化打破单例的例子
         // testSingleton();
 
         // 修改反序列化打破单例
-        // testSingletonFix();
+         testSingletonFix();
 
 //        testEnum();
 
@@ -145,7 +145,7 @@ public class SerializableTest {
 
     private static void test13() throws IOException, ClassNotFoundException {
         // 序列化
-//        Person9 person9Write = new Person10("wzc", 32);
+//        Person9 person9Write = new Person9("wzc", 32);
 //        System.out.println("person9Write = " + person9Write);
 //        SerializeUtils.writeObject(filePath, person9Write);
         // 反序列化
@@ -164,7 +164,7 @@ public class SerializableTest {
         Man3 man3Write = new Man3("wzc", 32, 1.0);
         SerializeUtils.writeObject(filePath, man3Write);
         Man3 man3Read = SerializeUtils.readObject(filePath);
-        System.out.println(man3Read.getName() + ":" + man3Read.getAge() + ":" + man3Read.getSalary()); // wzc:32:1.0
+        System.out.println(man3Read.name + ":" + man3Read.age + ":" + man3Read.salary); // wzc:32:1.0
     }
 
 
@@ -172,7 +172,7 @@ public class SerializableTest {
         Man2 man2Write = new Man2("wzc", 32, 1.0);
         SerializeUtils.writeObject(filePath, man2Write);
         Man2 man2Read = SerializeUtils.readObject(filePath);
-        System.out.println(man2Read.getName() + ":" + man2Read.getAge() + ":" + man2Read.getSalary()); // null:0:1.0
+        System.out.println(man2Read.name + ":" + man2Read.age + ":" + man2Read.getSalary()); // null:0:1.0
     }
 
     private static void test9() throws IOException, ClassNotFoundException {
@@ -291,7 +291,7 @@ public class SerializableTest {
     }
 
     private static void test2() throws IOException, ClassNotFoundException {
-        //SerializeUtils.writeObject(filePath, new Person2("wzc", 32));
+        SerializeUtils.writeObject(filePath, new Person2("wzc", 32));
         Person2 person2 = SerializeUtils.readObject(filePath);
         System.out.println(person2.getName() + ":" + person2.getAge());
     }
