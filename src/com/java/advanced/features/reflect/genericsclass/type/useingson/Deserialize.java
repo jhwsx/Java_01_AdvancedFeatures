@@ -3,6 +3,7 @@ package com.java.advanced.features.reflect.genericsclass.type.useingson;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.java.advanced.features.reflect.genericsclass.type.useingson.my.MyTypeToken;
+import com.java.advanced.features.reflect.genericsclass.type.useingson.you.YourTypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -43,6 +44,14 @@ public class Deserialize {
         Response<Data> r = gson.fromJson(json, type);
         System.out.println("r = " + r);
         System.out.println("r.data.getClass() = " + r.data.getClass());
+
+
+        Type type1 = new YourTypeToken<Response<Data>>() {
+        }.getType();
+        System.out.println("type1 = " + type1);
+        Response<Data> r2 = gson.fromJson(json, type1);
+        System.out.println("r2 = " + r2);
+        System.out.println("r2.data.getClass() = " + r2.data.getClass());
 
         // 解析数组
         String json2 = "[\"Android\",\"Java\",\"Flutter\",\"Dart\"]";
