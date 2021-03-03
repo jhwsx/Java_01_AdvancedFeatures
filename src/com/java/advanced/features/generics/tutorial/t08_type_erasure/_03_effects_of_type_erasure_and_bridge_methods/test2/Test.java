@@ -24,7 +24,7 @@ class MyNode extends Node {
     public MyNode(Integer data) {
         super(data);
     }
-    // 编译器生成的桥方法
+    // 编译器生成的桥接方法
     public void setData(Object data) {
         setData((Integer) data);
     }

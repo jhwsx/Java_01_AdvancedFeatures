@@ -19,8 +19,16 @@ public class Test {
         System.out.println(sumOfList(integerList));
         System.out.println(sumOfList(floatList));
         System.out.println(sumOfList(doubleList));
+
+
+        List<? extends Number> numberList;
+        numberList = integerList;
+        numberList = floatList;
+        numberList = doubleList;
     }
 
+    // List<Number> 更加严格，仅仅匹配 Number 类型的集合
+    // List<? extends Number> 可以匹配 Number 类型以及 Number 的子类型的集合
     static void process(List<? extends Number> list) {
         System.out.println(list);
     }

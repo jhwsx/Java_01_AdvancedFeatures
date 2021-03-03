@@ -16,10 +16,10 @@ public class Test {
          */
         // 这种赋值操作，因为左边我们已经指定了类型实参是 String，
         // 所以编译器了解到这个信息，帮我们推断出方法调用的类型参数。
-        List<String> listOne = Collections.emptyList();
+        List<String> listOne = Collections.emptyList(); // 左边的 List<String> 就是目标类型
 
         List<String> listTwo = Collections.<String>emptyList();
-        // 在 Java8中下面的代码是正确的，但是在 Java7中，却是编译错误的。
+        // 在 Java8中下面的代码是正确的，但是在 Java7中，却是编译错误的，认为类型实参是 Object，而 List<Object> 不是 List<String> 的子类型。
         processStringList(Collections.emptyList());
         // 在 Java7中必须写成下面这样
         processStringList(Collections.<String>emptyList());

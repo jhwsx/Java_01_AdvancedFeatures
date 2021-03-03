@@ -11,7 +11,11 @@ public class NonGenericsTest {
     public static void main(String[] args) {
         List list = new ArrayList();
         list.add("hello");
+        // 没有使用泛型，所以这里需要强转
         String s = (String) list.get(0);
+        // 没有使用泛型，所以没有类型检查
+        list.add(1);
+
     }
 
 }

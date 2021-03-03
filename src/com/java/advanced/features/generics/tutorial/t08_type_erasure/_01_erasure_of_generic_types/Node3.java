@@ -1,6 +1,5 @@
 package com.java.advanced.features.generics.tutorial.t08_type_erasure._01_erasure_of_generic_types;
 
-import javax.xml.soap.Node;
 
 /**
  * @author wangzhichao

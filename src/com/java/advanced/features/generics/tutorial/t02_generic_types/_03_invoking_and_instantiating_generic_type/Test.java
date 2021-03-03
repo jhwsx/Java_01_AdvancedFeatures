@@ -3,6 +3,10 @@ package com.java.advanced.features.generics.tutorial.t02_generic_types._03_invok
 import com.java.advanced.features.generics.tutorial.t02_generic_types._02_a_generic_version_of_the_box_class.Box;
 
 /**
+ * An invocation of a generic type is generally known as a parameterized type.
+ *
+ * Box<Integer> 这种叫做参数化类型
+ *
  * @author wangzhichao
  * @since 2020/4/23
  */

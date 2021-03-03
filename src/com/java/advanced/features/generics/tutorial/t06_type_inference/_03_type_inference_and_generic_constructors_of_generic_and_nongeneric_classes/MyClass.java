@@ -13,5 +13,7 @@ public class MyClass<X> {
     public static void main(String[] args) {
         // 构造函数的泛型进行了类型推断为 String
         new MyClass<Integer>("");
+
+        MyClass<Integer> myClass = new MyClass<>("");
     }
 }

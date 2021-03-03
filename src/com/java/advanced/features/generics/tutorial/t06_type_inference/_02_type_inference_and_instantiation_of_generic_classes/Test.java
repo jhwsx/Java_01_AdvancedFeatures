@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 泛型类实例化的类型推断
+ *
  * @author wangzhichao
  * @since 2020/4/23
  */

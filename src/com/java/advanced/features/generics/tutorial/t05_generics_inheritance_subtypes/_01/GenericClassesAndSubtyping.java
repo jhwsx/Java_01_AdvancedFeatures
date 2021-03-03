@@ -1,4 +1,4 @@
-package com.java.advanced.features.generics.tutorial.t05_generics_inheritance_subtypes;
+package com.java.advanced.features.generics.tutorial.t05_generics_inheritance_subtypes._01;
 
 import java.util.Collection;
 import java.util.List;
@@ -22,5 +22,8 @@ public class GenericClassesAndSubtyping {
         stringList = stringExceptionPayloadList;
         Collection<String> stringCollection;
         stringCollection = stringList;
+
+        PayloadList<Integer, String> integerStringPayloadList = null;
+        // stringList = integerStringPayloadList; // 编译报错
     }
 }

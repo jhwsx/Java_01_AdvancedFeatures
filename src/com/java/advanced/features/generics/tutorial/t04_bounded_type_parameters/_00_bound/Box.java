@@ -17,6 +17,7 @@ public class Box<T> {
         return t;
     }
 
+    // U extends Number 这就是限定的类型参数，其中 extends 是被重用了，在这里意思更广泛，表示类中的 extends 或接口中的 implements。
     public <U extends Number> void inspect(U u) {
         System.out.println("T: " + t.getClass().getName());
         System.out.println("U: " + u.getClass().getName());

@@ -1,4 +1,4 @@
-package com.java.advanced.features.generics.tutorial.t06_type_inference;
+package com.java.advanced.features.generics.tutorial.t06_type_inference._00;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +12,9 @@ import java.util.ArrayList;
 public class Test {
     public static void main(String[] args) {
         Serializable s = pick("d", new ArrayList<String>());
+        Serializable d = pick("d", 1);
+        Number pick = pick(1, 1L);
+        Object d1 = pick("d", new Object());
     }
 
     static <T> T pick(T a1, T a2) {

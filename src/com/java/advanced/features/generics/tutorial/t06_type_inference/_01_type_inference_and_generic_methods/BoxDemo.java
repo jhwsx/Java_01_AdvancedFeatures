@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 泛型方法上的类型推断
+ *
  * @author wangzhichao
  * @since 2020/4/23
  */

@@ -24,8 +24,10 @@ public class Test {
     /**
      * 在 {@code List<Integer>}, {@code List<Number>}, {@code List<Object>} 集合的尾部添加数字
      *
+     *
      * @param list
      */
+    // List<? super Integer> 可以匹配 Integer 类型的集合以及 Integer 的父类类型的集合
     public static void addNumber(List<? super Integer> list) {
         for (int i = 0; i < 10; i++) {
             list.add(i);

@@ -1,6 +1,8 @@
 package com.java.advanced.features.generics.tutorial.t04_bounded_type_parameters._02_generic_methods_and_bounded_type_parameters;
 
 /**
+ * 限定的类型参数对于通用算法的实现是关键的。
+ *
  * @author wangzhichao
  * @since 2020/4/23
  */

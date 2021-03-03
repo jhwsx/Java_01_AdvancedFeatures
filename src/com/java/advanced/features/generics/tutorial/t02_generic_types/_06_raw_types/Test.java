@@ -16,13 +16,13 @@ public class Test {
 
         // 允许把参数化类型赋值给原生类型
         Box<String> stringBox = new Box<>();
-        Box rawBox2 = stringBox;
+        Box rawBox2 = stringBox; // OK, 这是为了向后兼容。
 
-        // 把原生类型赋值给一个参数化类型，会得到一个警告
+        // 把原始类型赋值给一个参数化类型，会得到一个警告
         Box rawBox3 = new Box(); // rawBox3 is a raw type of Box<T>
         Box<Integer> intBox = rawBox3; // warning: unchecked assignment.
 
-        // 使用原生类型来调用对应的泛型类型的泛型方法，也会得到一个警告
+        // 使用原始类型来调用对应的泛型类型的泛型方法，也会得到一个警告
         rawBox2.set(8); // warning: unchecked call.
     }
 }

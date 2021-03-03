@@ -5,6 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * 什么时候使用无界通配符？
+ *
+ * 1.If you are writing a method that can be implemented using functionality provided in the Object class.
+ *
+ * 2.When the code is using methods in the generic class that don't depend on the type parameter.
+ * For example, List.size or List.clear. In fact, Class<?> is so often used because most of the methods
+ * in Class<T> do not depend on T.
+ *
  * @author wangzhichao
  * @since 2020/4/24
  */
@@ -32,6 +40,12 @@ public class Test {
         objectList.add(null); // ok
         objectList.add(1); // ok
         objectList.add("hello"); // ok
+
+        // List<?> 和 List<? extends Object> 是完全等价的。
+        List<? extends Object> list1 = new ArrayList<>();
+        list1.add(null);
+//        list1.add(1); // error
+//        list1.add("hello"); // error
     }
 
     /**

@@ -4,6 +4,8 @@ package com.java.advanced.features.generics.tutorial.t03_generic_methods;
 /**
  * 泛型方法
  *
+ * 可以声明静态或者非静态的泛型方法，还可以声明泛型构造方法
+ *
  * @author wangzhichao
  * @since 2020/4/23
  */

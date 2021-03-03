@@ -13,15 +13,22 @@ interface B {
 interface C {
 }
 
-class D<T extends A & B & C> {
+class D {
+}
+
+class E<T extends A & B & C> {
 
 }
 
-class E<T extends B & C> {
+class F<T extends B & C> {
 
 }
 
-//class F<T extends B & C & A> { // 编译报错：A 是类，必须写在第一位
+//class G<T extends B & C & A> { // 编译报错：A 是类，必须写在第一位
+//
+//}
+
+//class H<T extends A & D> { // 编译报错：期望 D 是接口。这是因为多个边界时，只能有一个是类。
 //
 //}
 

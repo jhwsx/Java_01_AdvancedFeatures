@@ -8,6 +8,7 @@ import java.util.List;
  * @author wangzhichao
  * @since 2020/4/25
  */
+// 自然数
 class NaturalNumber {
     private int i;
 
@@ -15,7 +16,7 @@ class NaturalNumber {
         this.i = i;
     }
 }
-
+// 偶数
 class EvenNumber extends NaturalNumber {
 
     public EvenNumber(int i) {
