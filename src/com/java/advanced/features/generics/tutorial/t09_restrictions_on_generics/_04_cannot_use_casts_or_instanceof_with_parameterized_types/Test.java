@@ -35,6 +35,10 @@ public class Test {
         ArrayList<String> as = (ArrayList<String>) ls; // OK
     }
 
+    <T> T badCast(T t, Object o) {
+        return (T)o;
+    }
+
     public static void main(String[] args) {
         rtti(new ArrayList<Integer>());
         rtti(new ArrayList<String>());
