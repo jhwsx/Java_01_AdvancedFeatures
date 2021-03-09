@@ -1,5 +1,7 @@
 package com.java.advanced.features.generics.tutorial.t04_bounded_type_parameters._02_generic_methods_and_bounded_type_parameters;
 
+import java.io.Serializable;
+
 /**
  * 限定的类型参数对于通用算法的实现是关键的。
  *
@@ -24,6 +26,17 @@ public class Util {
             if (e.compareTo(elem) > 0) {
                 ++count;
             }
+        }
+        return count;
+    }
+
+    public static <T extends Comparable<T>& Runnable> int countGreaterThan2(T[] anArray, T elem) {
+        int count = 0;
+        for (T e : anArray) {
+            if (e.compareTo(elem) > 0) {
+                ++count;
+            }
+            e.run();
         }
         return count;
     }
