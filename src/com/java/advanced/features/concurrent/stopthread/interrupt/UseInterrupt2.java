@@ -18,7 +18,7 @@ public class UseInterrupt2 {
         myThread.start();
 
         try {
-            Thread.sleep(1);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

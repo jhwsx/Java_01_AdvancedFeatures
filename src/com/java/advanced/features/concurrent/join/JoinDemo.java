@@ -14,6 +14,7 @@ class Task2 implements Runnable {
         System.out.println(Thread.currentThread().getName() + " is doing task.");
     }
 }
+// 使用了 join() ，子线程的执行顺序是确定的。
 public class JoinDemo {
     public static void main(String[] args) {
         Thread joiner = Thread.currentThread();

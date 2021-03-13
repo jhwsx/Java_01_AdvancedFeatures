@@ -7,7 +7,7 @@ class Task1 implements Runnable {
         System.out.println(Thread.currentThread().getName() + " is doing task.");
     }
 }
-
+// 五个子线程的输出顺序不确定
 public class Demo {
     public static void main(String[] args) {
         for (int i = 0; i < 5; i++) {
