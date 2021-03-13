@@ -76,7 +76,7 @@ class TestApkRunnable implements Runnable {
         }
     }
 }
-
+// 这个例子会形成死锁
 public class ApkDemo {
     public static void main(String[] args) {
         Apk apk = new Apk();

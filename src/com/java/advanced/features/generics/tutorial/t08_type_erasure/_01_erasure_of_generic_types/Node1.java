@@ -1,6 +1,8 @@
 package com.java.advanced.features.generics.tutorial.t08_type_erasure._01_erasure_of_generic_types;
 
 /**
+ * 泛型擦除后的形式是 Node2 类
+ *
  * @author wangzhichao
  * @since 2020/4/25
  */

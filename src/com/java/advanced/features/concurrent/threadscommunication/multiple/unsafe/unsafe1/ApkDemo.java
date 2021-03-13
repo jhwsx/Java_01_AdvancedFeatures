@@ -41,7 +41,7 @@ class Apk {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + " Test Apk: " + this.apkName);
+        System.out.println(Thread.currentThread().getName() + " Test Apk: " + this.apkName);// test v1 v2
         isForTest = false;
         notify();
     }
@@ -76,7 +76,7 @@ class TestApkRunnable implements Runnable {
         }
     }
 }
-
+// 这个例子会造成漏测，以及多测的问题。
 public class ApkDemo {
     public static void main(String[] args) {
         Apk apk = new Apk();

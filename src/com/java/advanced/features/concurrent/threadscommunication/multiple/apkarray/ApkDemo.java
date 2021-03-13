@@ -1,5 +1,6 @@
 package com.java.advanced.features.concurrent.threadscommunication.multiple.apkarray;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -25,11 +26,13 @@ class ApkBuffer {
     final Apk[] items = new Apk[5];
     private int putptr, takeptr, count;
 
-    public void put(Apk x) throws InterruptedException {
+    // 发布 apk
+    public void put() throws InterruptedException {
         lock.lock();
         try {
             while (count == items.length)
                 notFull.await();
+            Apk x = new Apk("QQ"); // 放在这里编号不会错乱。
             System.out.println("ApkBuffer, put=======>" + x);
             items[putptr] = x;
             if (++putptr == items.length) putptr = 0;
@@ -40,6 +43,7 @@ class ApkBuffer {
         }
     }
 
+    // 测试 apk
     public Apk take() throws InterruptedException {
         lock.lock();
         try {
@@ -67,7 +71,7 @@ class ReleaseApkRunnable implements Runnable {
     public void run() {
         while (true) {
             try {
-                apkBuffer.put(new Apk("QQ"));
+                apkBuffer.put();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -96,7 +100,6 @@ class TestApkRunnable implements Runnable {
 
 public class ApkDemo {
     public static void main(String[] args) {
-        Apk apk = new Apk("QQ");
         ApkBuffer apkBuffer = new ApkBuffer();
         Runnable releaseApkRunnable = new ReleaseApkRunnable(apkBuffer);
         Runnable testApkRunnable = new TestApkRunnable(apkBuffer);
