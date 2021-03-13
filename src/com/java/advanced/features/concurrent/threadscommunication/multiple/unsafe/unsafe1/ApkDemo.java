@@ -9,7 +9,7 @@ class Apk {
     public synchronized void releaseApk(String name) {
         if (isForTest) {
             try {
-                wait(); // rt1
+                wait(); // r1 r2
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -21,7 +21,7 @@ class Apk {
             e.printStackTrace();
         }
         this.apkName = name +"-V"+ code;
-        System.out.println(Thread.currentThread().getName() + "============>Release apk: " + this.apkName);
+        System.out.println(Thread.currentThread().getName() + "============>Release apk: " + this.apkName); // v1 v2 v3
         code++;
         isForTest = true;
         notify();
@@ -30,7 +30,7 @@ class Apk {
     public synchronized void testApk() {
         if (!isForTest) {
             try {
-                wait();
+                wait(); // t1 t2
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -41,7 +41,7 @@ class Apk {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + " Test Apk: " + this.apkName);
+        System.out.println(Thread.currentThread().getName() + " Test Apk: " + this.apkName); // v1
         isForTest = false;
         notify();
     }
@@ -76,7 +76,7 @@ class TestApkRunnable implements Runnable {
         }
     }
 }
-
+// 这个程序会出现 apk 漏测，以及 apk 多次测试的问题。
 public class ApkDemo {
     public static void main(String[] args) {
         Apk apk = new Apk();

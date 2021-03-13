@@ -4,7 +4,7 @@ package com.java.advanced.features.concurrent.create;
 class Bank {
     private int sum = 0;
 
-    //    public void add(int num) {
+//        public void add(int num) {
 //        sum = sum + num;
 //        try {Thread.sleep(10);} catch (InterruptedException e) {}
 //        System.out.println("sum = " + sum);
