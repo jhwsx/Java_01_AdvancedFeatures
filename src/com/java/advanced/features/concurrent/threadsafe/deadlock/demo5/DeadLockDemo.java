@@ -41,7 +41,7 @@ class TaskB implements Runnable {
         }
     }
 }
-
+// 这个例子演示解决死锁问题，通过打破环路等待条件。
 public class DeadLockDemo {
     public static Object lock1 = new Object();
     public static Object lock2 = new Object();

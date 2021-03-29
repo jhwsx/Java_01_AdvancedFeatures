@@ -70,7 +70,7 @@ class TaskB implements Runnable {
         }
     }
 }
-
+// 这个例子演示解决活锁问题
 public class DeadLockDemo {
     public static ReentrantLock lock1 = new ReentrantLock();
     public static ReentrantLock lock2 = new ReentrantLock();

@@ -76,7 +76,7 @@ class TestApkRunnable implements Runnable {
         }
     }
 }
-
+// 本例使用 notifyAll() 替代 notify(), 解决了死锁的问题
 public class ApkDemo {
     public static void main(String[] args) {
         Apk apk = new Apk();
