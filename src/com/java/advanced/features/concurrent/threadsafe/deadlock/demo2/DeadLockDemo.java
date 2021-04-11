@@ -2,6 +2,7 @@ package com.java.advanced.features.concurrent.threadsafe.deadlock.demo2;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+// TaskA 任务：需要先获取 lock1 锁，再获取 lock2 锁
 class TaskA implements Runnable {
 
     @Override
@@ -29,6 +30,7 @@ class TaskA implements Runnable {
     }
 }
 
+// TaskB 任务：需要先获取 lock2 锁，再获取 lock1 锁。
 class TaskB implements Runnable {
 
     @Override

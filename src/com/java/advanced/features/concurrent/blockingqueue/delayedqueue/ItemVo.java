@@ -33,6 +33,7 @@ public class ItemVo<T> implements Delayed {
     }
 
     // 获取剩余的延时时长
+    // 实现 Delayed 接口中的方法
     @Override
     public long getDelay(TimeUnit unit) {
         return unit.convert(expirationTime - System.currentTimeMillis(),

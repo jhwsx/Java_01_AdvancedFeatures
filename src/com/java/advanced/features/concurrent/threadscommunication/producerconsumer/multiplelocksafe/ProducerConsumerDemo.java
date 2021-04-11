@@ -100,14 +100,3 @@ public class ProducerConsumerDemo {
         consumerThread2.start();
     }
 }
-
-/*
-异常日志片段1：
-producerThread2......Toy162932
-producerThread1......Toy162933
-consumerThread2................Toy162933
-异常日志片段2：生产一次，消费两次
-producerThread2......Toy107203
-consumerThread1................Toy107203
-consumerThread2................Toy107203
- */

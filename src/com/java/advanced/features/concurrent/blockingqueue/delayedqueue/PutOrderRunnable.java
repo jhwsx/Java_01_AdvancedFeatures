@@ -3,7 +3,7 @@ package com.java.advanced.features.concurrent.blockingqueue.delayedqueue;
 import java.util.concurrent.DelayQueue;
 
 /**
- * 将订单放入 DelayQueue 中的任务
+ * 将订单放入 DelayQueue 中的任务，作为生成者
  */
 public class PutOrderRunnable implements Runnable {
     private DelayQueue<ItemVo<Order>> delayQueue;

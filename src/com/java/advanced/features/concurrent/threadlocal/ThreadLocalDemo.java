@@ -1,6 +1,8 @@
 package com.java.advanced.features.concurrent.threadlocal;
 
 /**
+ * 参考：https://blog.csdn.net/qq_35190492/article/details/107599875
+ *
  * @author wangzhichao
  * @since 2020/3/12
  */

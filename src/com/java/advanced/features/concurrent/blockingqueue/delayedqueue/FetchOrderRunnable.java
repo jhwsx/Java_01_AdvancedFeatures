@@ -3,7 +3,7 @@ package com.java.advanced.features.concurrent.blockingqueue.delayedqueue;
 import java.util.concurrent.DelayQueue;
 
 /**
- * 取出到期订单的任务
+ * 取出到期订单的任务，作为消费者
  * 在循环中，一直从 DelayQueue 中取出到期订单
  */
 public class FetchOrderRunnable implements Runnable {

@@ -2,6 +2,7 @@ package com.java.advanced.features.concurrent.threadsafe.deadlock.demo3;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+// TaskA 任务：需要先尝试获取 lock1 锁，再尝试获取 lock2 锁。
 class TaskA implements Runnable {
 
     @Override
@@ -31,6 +32,7 @@ class TaskA implements Runnable {
     }
 }
 
+// TaskB 任务：需要先尝试获取 lock2 锁，再尝试获取 lock1 锁。
 class TaskB implements Runnable {
 
     @Override
@@ -59,7 +61,8 @@ class TaskB implements Runnable {
         }
     }
 }
-// 这个例子演示活锁问题
+// 这个例子演示活锁问题：
+// 两个线程在尝试拿锁的机制中，发生多个线程之间互相谦让，不断发生同一个线程总是拿到同一把锁，在尝试拿另一把锁时因为拿不到，而将本来已经持有的锁释放的过程。
 public class DeadLockDemo {
     public static ReentrantLock lock1 = new ReentrantLock();
     public static ReentrantLock lock2 = new ReentrantLock();

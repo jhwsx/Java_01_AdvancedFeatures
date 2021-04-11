@@ -54,29 +54,3 @@ public class DeadLockDemo {
         threadB.start();
     }
 }
-
-/*
-打印结果：
-ThreadA holds lock1
-ThreadB holds lock2
-ThreadB waits for lock1
-ThreadA waits for lock2
-
-或者是
-ThreadA holds lock1
-ThreadB holds lock2
-ThreadA waits for lock2
-ThreadB waits for lock1
-
-或者是
-ThreadB holds lock2
-ThreadA holds lock1
-ThreadB waits for lock1
-ThreadA waits for lock2
-
-或者是
-ThreadB holds lock2
-ThreadA holds lock1
-ThreadA waits for lock2
-ThreadB waits for lock1
- */
