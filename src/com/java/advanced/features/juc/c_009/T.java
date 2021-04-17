@@ -29,6 +29,7 @@ public class T {
     }
 
     public static void main(String[] args) {
+        // 在线程中执行的
         new T().m1();
     }
 }

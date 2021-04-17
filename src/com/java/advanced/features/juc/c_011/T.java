@@ -3,6 +3,8 @@ package com.java.advanced.features.juc.c_011;
 /**
  * 异常锁：程序在执行过程中，如果出现异常，默认情况锁被释放。
  *
+ * 锁升级：https://www.jianshu.com/p/b43b7bf5e052
+ *
  * @author wangzhichao
  * @since 2020/3/28
  */
@@ -22,7 +24,7 @@ public class T {
             }
 
             if (count == 5) {
-                int i = 1 / 0;
+                int i = 1 / 0; // 此处发生异常，锁将被释放。
                 System.out.println(i);
             }
         }

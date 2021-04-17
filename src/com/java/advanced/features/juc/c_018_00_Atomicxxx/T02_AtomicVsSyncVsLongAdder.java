@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.LongAdder;
 
 /**
- * 比较 AtomicLong，synchronized 和 LongAdder 的效率
+ * 比较 AtomicLong，synchronized 和 LongAdder（1.8引入的） 的效率
  * 参考文章：synchronized和AtomicXXX效率比较 https://www.cnblogs.com/renjiaqi/p/11323461.html
  *
  * @author wangzhichao

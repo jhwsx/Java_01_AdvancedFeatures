@@ -32,3 +32,10 @@ public class T {
         new Thread(() -> t.m2(), "t2").start();
     }
 }
+
+/*
+打印结果：
+t1 m1 start...
+t2 m2...
+t1 m1 end...
+ */

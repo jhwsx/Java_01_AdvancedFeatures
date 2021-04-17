@@ -8,8 +8,8 @@ package com.java.advanced.features.juc.c_000;
  */
 public class T03_Sleep_Yield_Join {
     public static void main(String[] args) {
-        // testSleep();
-        // testYield();
+//         testSleep();
+//         testYield();
         testJoin();
     }
 
@@ -61,7 +61,7 @@ public class T03_Sleep_Yield_Join {
         Thread t2 = new Thread(() -> {
             try {
                 // 在 t2 上调用 t1.join()，t2 必须等待 t1 运行完毕再继续 t2 的运行。
-                t1.join();
+                t1.join(); // join() 方法的含义是等待调用本方法的线程死亡。join() 方法里面是用 wait() 来实现的。
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

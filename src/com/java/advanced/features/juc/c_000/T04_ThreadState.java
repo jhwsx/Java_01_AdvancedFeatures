@@ -24,8 +24,9 @@ public class T04_ThreadState {
     static class MyThread extends Thread {
         @Override
         public void run() {
+            System.out.println(Thread.currentThread().getName() + " 准备获取锁");
             synchronized (T04_ThreadState.class) {
-                System.out.println(Thread.currentThread().getName() + "获取锁");
+                System.out.println(Thread.currentThread().getName() + " 获取锁");
                 for (int i = 0; i < 2; i++) {
                     try {
                         Thread.sleep(500);
@@ -34,13 +35,16 @@ public class T04_ThreadState {
                     }
                     System.out.println(i);
                 }
+                System.out.println(Thread.currentThread().getName() + " notify()");
                 T04_ThreadState.class.notify();
                 try {
+                    System.out.println(Thread.currentThread().getName() + " wait()");
                     T04_ThreadState.class.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName() + "释放锁");
+                System.out.println(Thread.currentThread().getName() + " 重新获取锁，继续执行");
+                System.out.println(Thread.currentThread().getName() + " 释放锁");
             }
         }
     }
@@ -59,7 +63,7 @@ public class T04_ThreadState {
             while (true) {
                 State state = myThread.getState();
                 if (state != lastState) {
-                    System.out.println(state);
+                    System.out.println("==================状态："+state);
                     lastState = state;
                 }
             }
@@ -68,26 +72,30 @@ public class T04_ThreadState {
 
     public static void main(String[] args) {
         MyThread t = new MyThread();
-        System.out.println(t.getState());
+        System.out.println("==================状态：" + t.getState());
         // 这里用一个守护线程来获取 MyThread 的状态。
         LoopDaemonThread loopDaemonThread = new LoopDaemonThread(t);
         loopDaemonThread.setDaemon(true);
         loopDaemonThread.start();
         t.start();
         synchronized (T04_ThreadState.class) {
-            System.out.println(Thread.currentThread().getName() + "获取锁");
+            System.out.println(Thread.currentThread().getName() + " 获取锁");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             try {
+                System.out.println(Thread.currentThread().getName() + " wait()");
                 T04_ThreadState.class.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println(Thread.currentThread().getName() + " 重新获取锁，继续执行");
+            System.out.println(Thread.currentThread().getName() + " notify()");
             T04_ThreadState.class.notify();
-            System.out.println(Thread.currentThread().getName() + "释放锁");
+            System.out.println(Thread.currentThread().getName() + " 释放锁");
+
         }
         try {
             t.join();

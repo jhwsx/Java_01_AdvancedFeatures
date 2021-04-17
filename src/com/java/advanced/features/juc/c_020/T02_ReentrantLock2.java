@@ -5,8 +5,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 针对 T01_ReentrantLock1，使用 ReentrantLock 替换 synchronized 来实现
- * 注意这种写法是固定的，先加锁，然后在 try ... finally 块中释放锁
+ * 只有 m1 执行完毕的时候，m2 才能执行。
+ *
  * @author wangzhichao
  * @since 2020/3/31
  */
@@ -24,9 +24,6 @@ public class T02_ReentrantLock2 {
                     e.printStackTrace();
                 }
                 System.out.println(i);
-                if (i == 2) {
-                    m2();
-                }
             }
             System.out.println("m1...........end");
         } finally {
@@ -46,6 +43,12 @@ public class T02_ReentrantLock2 {
 
     public static void main(String[] args) {
         T02_ReentrantLock2 t1 = new T02_ReentrantLock2();
-        t1.m1();
+        new Thread(t1::m1).start();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Thread(t1::m2).start();
     }
 }

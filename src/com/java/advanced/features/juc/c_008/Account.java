@@ -41,6 +41,6 @@ public class Account {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(account.getBalance("zhangsan"));
+        System.out.println(account.getBalance("zhangsan")); // 100.0
     }
 }

@@ -31,3 +31,11 @@ class TT extends T {
         System.out.println("child m end");
     }
 }
+
+/*
+打印结果：
+child m start
+m start
+m end
+child m end
+*/
