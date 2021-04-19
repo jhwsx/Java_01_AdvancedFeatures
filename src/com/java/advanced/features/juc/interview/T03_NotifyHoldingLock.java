@@ -28,9 +28,9 @@ public class T03_NotifyHoldingLock {
         final Object lock = new Object();
         // 我们让 t2 线程先启动
         new Thread(() -> {
-            System.out.println("t2 启动");
             // 如果 size 不等于 5，就处于等待状态
             synchronized (lock) {
+                System.out.println("t2 启动");
                 if (c.size() != 5) {
                     try {
                         lock.wait();
@@ -54,14 +54,13 @@ public class T03_NotifyHoldingLock {
                     c.add(new Object());
                     System.out.println("add " + i);
                     if (c.size() == 5) {
-                        lock.notify(); // 虽然 notify 里，但是并不释放锁。
+                        lock.notify(); // 注意啊：虽然 notify 了，但是并不释放锁，只有代码走到 synchronized 的最后一行时才会释放锁。
                     }
                     try {
                         TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
         }, "t1").start();

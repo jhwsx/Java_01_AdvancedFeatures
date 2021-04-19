@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 线程2读取到的值未必就是线程1最新添加后的值，所以需要线程同步。
  * 由于线程与线程之间是不可见的，所以线程2中的 c.size() 方法永远检测不到是 5。
+ *
  * @author wangzhichao
  * @since 2020/4/8
  */
@@ -35,13 +36,13 @@ public class T01_WithoutVolatile {
             }
         }, "t1").start();
 
-        new Thread(()->{
+        new Thread(() -> {
             while (true) {
                 if (c.size() == 5) {
                     break;
                 }
             }
             System.out.println("t2 结束");
-        },"t2").start();
+        }, "t2").start();
     }
 }

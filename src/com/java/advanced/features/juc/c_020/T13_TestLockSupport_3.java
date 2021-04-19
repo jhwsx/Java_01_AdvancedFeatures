@@ -1,5 +1,8 @@
 package com.java.advanced.features.juc.c_020;
 
+import sun.misc.Unsafe;
+
+import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
@@ -13,6 +16,7 @@ import java.util.concurrent.locks.LockSupport;
  */
 public class T13_TestLockSupport_3 {
     public static void main(String[] args) {
+        testUnsafe();
         Thread t = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
                 System.out.println(i);
@@ -33,5 +37,22 @@ public class T13_TestLockSupport_3 {
         });
         t.start();
         LockSupport.unpark(t);
+    }
+
+    /**
+     * 参考：
+     * https://baijiahao.baidu.com/s?id=1648712942552745701&wfr=spider&for=pc
+     * https://blog.csdn.net/zyzzxycj/article/details/89877863 （这个更全些，还没看完）
+     */
+    private static void testUnsafe() {
+        try {
+            Field theUnsafeField = Unsafe.class.getDeclaredField("theUnsafe");
+            theUnsafeField.setAccessible(true);
+            Unsafe unsafe = (Unsafe) theUnsafeField.get(null);
+            System.out.println("unsafe.addressSize() = " + unsafe.addressSize());
+            System.out.println("unsafe.pageSize() = " + unsafe.pageSize());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -6,6 +6,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * ReentrantLock 默认是非公平锁
  * 分别用 fair = true ，false 传给 ReentrantLock 的构造，查看打印结果。
  *
+ * 采用公平锁时，打印结果看到，线程0与线程1出现很多交叉打印；
+ * 采用非公平锁时，打印结果看到，线程0与线程1很少出现交叉打印。
  * @author wangzhichao
  * @since 2020/3/31
  */

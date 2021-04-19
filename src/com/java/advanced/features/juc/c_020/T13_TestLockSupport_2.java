@@ -34,7 +34,7 @@ public class T13_TestLockSupport_2 {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        // 唤醒线程 t
+        // 唤醒线程 t，需要把指定的线程传递给 LockSupport.unpark() 方法。
         LockSupport.unpark(t);
     }
 }

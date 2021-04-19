@@ -26,12 +26,12 @@ public class T04_ReentrantLock4_LockInterruptibly {
             System.out.println(name + " 被中断");
             System.out.println(name + " 做些别的事情");
         } finally {
-//            try {
+            try {
                 lock.unlock();
                 System.out.println(name + " 释放锁");
-//            } catch (Exception e) {
-//                System.out.println(name + " : 没有得到锁的线程运行结束");
-//            }
+            } catch (Exception e) {
+                System.out.println(name + " : 没有得到锁的线程运行结束，e=" + e);
+            }
         }
     }
  

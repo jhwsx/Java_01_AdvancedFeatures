@@ -8,7 +8,9 @@ import java.util.concurrent.TimeUnit;
  * 由于线程与线程之间是不可见的，所以线程2中的 c.size() 方法永远检测不到是 5，这里加 volatile 给 lists。
  * volatile 一定要尽量去修饰普通的值，不要去修饰引用值，这是因为 volatile 修饰引用类型，这个引用对象指向
  * 的是一个 new 出来的对象，如果这个对象里的成员变量的值改变了，是无法观察到的。
- * todo 不理解 volatile 的这个说法
+ *
+ * 这个程序不理想，因为 volatile 修饰引用类型，这个引用对象指向的是一个 new 出来的对象，如果这个对象里的
+ * 成员变量的值改变了，是无法观察到的。
  *
  * @author wangzhichao
  * @since 2020/4/8

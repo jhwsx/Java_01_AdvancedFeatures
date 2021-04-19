@@ -31,7 +31,7 @@ public class T04_NotifyHoldingLock {
             System.out.println("t2 启动");
             // 如果 size 不等于 5，就处于等待状态
             synchronized (lock) {
-                if (c.size() != 5) {
+                while (c.size() != 5) { // 这里应该用 while 吧。
                     try {
                         lock.wait();
                     } catch (InterruptedException e) {
@@ -56,7 +56,7 @@ public class T04_NotifyHoldingLock {
                     c.add(new Object());
                     System.out.println("add " + i);
                     if (c.size() == 5) {
-                        lock.notify(); // 虽然 notify 里，但是并不释放锁。
+                        lock.notify(); // 虽然 notify 了，但是并不释放锁。
                         try {
                             lock.wait(); // 挂起当前线程，释放锁
                         } catch (InterruptedException e) {
@@ -68,11 +68,8 @@ public class T04_NotifyHoldingLock {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
                 }
             }
         }, "t1").start();
-
-
     }
 }

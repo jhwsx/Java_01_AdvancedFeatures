@@ -2,19 +2,19 @@ package com.java.advanced.features.juc.interview;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.LockSupport;
 
 /**
- * 采用 CountDownLatch
- * 注释掉 t1 中的休眠 1 秒后，就不对了。线程1 在调用了 latch.countDown 之后并没有停下来，
- * 直接打印完了所有的数字。
+ * 使用 LockSupport 来实现
  *
  * @author wangzhichao
- * @since 2020/4/8
+ * @since 2021/4/19
  */
-public class T05_CountDownLatch {
+public class T06_LockSupport {
     volatile List lists = new ArrayList();
+    private static Thread t1;
+    private static Thread t2;
 
     public void add(Object o) {
         lists.add(o);
@@ -25,48 +25,44 @@ public class T05_CountDownLatch {
     }
 
     public static void main(String[] args) {
-        T05_CountDownLatch c = new T05_CountDownLatch();
-        CountDownLatch latch = new CountDownLatch(1);
+        T04_NotifyHoldingLock c = new T04_NotifyHoldingLock();
         // 我们让 t2 线程先启动
-        new Thread(() -> {
+        t2 = new Thread(() -> {
             System.out.println("t2 启动");
             // 如果 size 不等于 5，就处于等待状态
-            if (c.size() != 5) {
-                try {
-                    latch.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            while (c.size() != 5) { // 这里应该用 while 吧。
+                // 使用 LockSupport 的 park() 方法阻塞当前的线程 t2
+                LockSupport.park();
             }
             System.out.println("t2 结束");
-        }, "t2").start();
+            // 唤醒线程1继续执行吧。
+            LockSupport.unpark(t1);
+        }, "t2");
+        t2.start();
         // 休眠 1 秒，是保证线程 t1 一定在 t2 之后启动。
         try {
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        new Thread(() -> {
+        t1 = new Thread(() -> {
             System.out.println("t1 启动");
             for (int i = 0; i < 10; i++) {
                 c.add(new Object());
                 System.out.println("add " + i);
                 if (c.size() == 5) {
-                    latch.countDown();
-                    try {
-                        latch.await();
+                    // 唤醒线程2继续执行吧
+                    LockSupport.unpark(t2);
+                    // 阻塞当前的线程 t1
+                    LockSupport.park();
+                }
+                    /*try {
+                        TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }
-                }
-                /*try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
+                    }*/
             }
-        }, "t1").start();
-
-
+        }, "t1");
+        t1.start();
     }
 }
