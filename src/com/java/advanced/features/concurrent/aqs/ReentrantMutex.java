@@ -25,11 +25,11 @@ public class ReentrantMutex implements Lock, Serializable {
         protected boolean tryAcquire(int acquires) {
             assert acquires == 1; // Otherwise unused
             if (compareAndSetState(0, 1)) {
-                setExclusiveOwnerThread(Thread.currentThread());
+                setExclusiveOwnerThread(Thread.currentThread()); // 加锁
                 return true;
             } else if (getExclusiveOwnerThread() == Thread.currentThread()) {
                 // 判断是持有锁的线程，那么把状态值 + 1，再保存起来
-                setState(getState() + 1);
+                setState(getState() + 1); // 重入
                 return true;
             }
             return false;
