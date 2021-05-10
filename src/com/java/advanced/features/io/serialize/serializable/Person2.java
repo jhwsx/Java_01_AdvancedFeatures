@@ -10,6 +10,10 @@ public class Person2 implements Serializable {
     private String name;
     private int age;
 
+    public Person2() {
+        System.out.println("Person2() constructor called");
+    }
+
     public Person2(String name, int age) {
         this.name = name;
         this.age = age;

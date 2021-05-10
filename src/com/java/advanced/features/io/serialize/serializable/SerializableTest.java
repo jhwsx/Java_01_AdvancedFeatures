@@ -13,7 +13,7 @@ public class SerializableTest {
 //        test1();
 
         // 第二组：Person2 实现了序列化接口，正常
-//        test2();
+        test2();
 
         // 第三组：Person3 实现了序列化接口，但是它的成员有没有实现序列化接口，报错：
 //        test3();
@@ -28,10 +28,10 @@ public class SerializableTest {
 //         test6();
 
         // 解决多引用写入问题，使用 oos.reset();
-         // test7();
+//          test7();
 
         // 解决多引用写入问题，使用 oos.writeUnshared(personWrite);
-        // test8();
+//         test8();
 
         // 子类实现序列化,父类不实现序列化
         // 报错：java.io.InvalidClassException: com.java.advanced.features.io.serialize.serializable.Man; no valid constructor
@@ -48,7 +48,7 @@ public class SerializableTest {
 
         // 序列化的时候多一个字段，反序列化的时候少一个字段，不会报错
         // 序列化的时候少一个字段，反序列化的时候多一个字段，不会报错
-        test13();
+//        test13();
 
         // 演示：writeReplace 先于writeObject, readResolve后于readObject
 //        test14();
@@ -57,7 +57,7 @@ public class SerializableTest {
         // testSingleton();
 
         // 修改反序列化打破单例
-         testSingletonFix();
+//         testSingletonFix();
 
 //        testEnum();
 
