@@ -86,7 +86,9 @@ public class Receiver {
                         leftLen = (int) (writeLens + bufferedLen - fileinfos[i].mFileSize);
                         writeLen = bufferedLen - leftLen;
                         fout.write(buf, 0, writeLen); // 写入部分
-                        System.out.println(fileinfos[i].mFileName + "的传输进度：" + (writeLens * 100 / fileinfos[i].mFileSize) + "%," + writeLens);
+                        fout.flush();
+                        fout.close();
+                        System.out.println(fileinfos[i].mFileName + "的传输进度1：" + (writeLens * 100 / fileinfos[i].mFileSize) + "%," + writeLens);
                         totalWriteLens += writeLen;
                         move(buf, writeLen, leftLen); // 把写满文件后缓存区中剩余的字节长度放在 byte 数组里面
                         break;
@@ -94,17 +96,19 @@ public class Receiver {
                         fout.write(buf, 0, bufferedLen); // 全部写入
                         writeLens += bufferedLen;
                         totalWriteLens += bufferedLen;
-                        System.out.println(fileinfos[i].mFileName + "的传输进度：" + (writeLens * 100 / fileinfos[i].mFileSize) + "%," + writeLens);
-                        System.out.println("总接收进度：" + (totalWriteLens * 100 / totalSize) + "%" + ", " + totalWriteLens);
+                        System.out.println(fileinfos[i].mFileName + "的传输进度2：" + (writeLens * 100 / fileinfos[i].mFileSize) + "%," + writeLens);
+                        System.out.println("总接收进度1：" + (totalWriteLens * 100 / totalSize) + "%" + ", " + totalWriteLens);
                         if (totalWriteLens >= totalSize) {
                             //mListener.report(GroupChatActivity.FAIL, null);
+                            fout.flush();
+                            fout.close();
                             return;
                         }
                         leftLen = 0;
                     }
                     //mListener.report(GroupChatActivity.PROGRESS,
                     //(int) (totalWriteLens * 100 / totalSize));
-                    System.out.println("总接收进度：" + (totalWriteLens * 100 / totalSize) + "%" + ", " + totalWriteLens);
+                    System.out.println("总接收进度2：" + (totalWriteLens * 100 / totalSize) + "%" + ", " + totalWriteLens);
                 } // end while
                 fout.flush();
                 fout.close();
@@ -113,7 +117,7 @@ public class Receiver {
                 e.printStackTrace();
                 // Log.d(TAG,"receive file Exception");
             }
-            System.out.println("总接收进度：" + (totalWriteLens * 100 / totalSize) + "%" + ", " + totalWriteLens);
+            System.out.println("总接收进度3：" + (totalWriteLens * 100 / totalSize) + "%" + ", " + totalWriteLens);
         } // end for
         //mListener.report(GroupChatActivity.FAIL, null);
     }
