@@ -5,7 +5,7 @@ package com.java.advanced.features.juc.c_008;
  * 对业务写方法加锁
  * 对业务读方法不加锁
  * 这样会不会有问题？
- * 容易产生脏读（dirtyRead）
+ * 容易产生脏读（dirtyRead），解决办法：给读加上 synchronized。
  * @author wangzhichao
  * @since 2020/3/28
  */
@@ -35,6 +35,7 @@ public class Account {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        // 没有等 set 执行完毕就去读了，读到的不是执行完毕后的值，这个现象叫做脏读。
         System.out.println(account.getBalance("zhangsan")); // getBalance 不加锁，打印 0.0;加锁：打印 100.0
         try {
             Thread.sleep(2000);

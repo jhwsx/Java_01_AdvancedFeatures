@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Phaser 是在 1.7 添加的
- * todo 这个不好理解，先放着
+ *
  * @author wangzhichao
  * @since 2020/3/31
  */
@@ -22,9 +22,10 @@ public class T09_TestPhaser2 {
     }
 
     public static void main(String[] args) {
+        // 动态添加多个 parties
         phaser.bulkRegister(7);
         for (int i = 0; i < 5; i++) {
-            new Thread(new Person("p" + i)).start();
+            new Thread(new Person("第" + i + "波儿亲朋好友")).start();
         }
         new Thread(new Person("新郎")).start();
         new Thread(new Person("新娘")).start();
@@ -64,18 +65,21 @@ public class T09_TestPhaser2 {
         public void arrive() {
             milliSleep(r.nextInt(1000));
             System.out.printf("%s 到达现场！\n", name);
+            // 到达并等待其他线程到达
             phaser.arriveAndAwaitAdvance();
         }
 
         public void eat() {
             milliSleep(r.nextInt(1000));
             System.out.printf("%s 吃完！\n", name);
+            // 到达并等待其他线程到达
             phaser.arriveAndAwaitAdvance();
         }
 
         public void leave() {
             milliSleep(r.nextInt(1000));
             System.out.printf("%s 离开！\n", name);
+            // 到达并等待其他线程到达
             phaser.arriveAndAwaitAdvance();
         }
 
@@ -83,8 +87,10 @@ public class T09_TestPhaser2 {
             if (name.equals("新郎") || name.equals("新娘")) {
                 milliSleep(r.nextInt(1000));
                 System.out.printf("%s 洞房！\n", name);
+                // 到达并等待其他线程到达
                 phaser.arriveAndAwaitAdvance();
             } else {
+                // 到达并注销该parties，这个方法不会使线程阻塞
                 phaser.arriveAndDeregister();
 
             }

@@ -16,7 +16,7 @@ public class Mgr03 {
 
     public static Mgr03 getInstance() {
         if (INSTANCE == null) {
-            // 为了暴露出线程安全问题，在这里休眠 1s。
+            // 为了暴露出线程安全问题，在这里休眠 1 毫秒。
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {

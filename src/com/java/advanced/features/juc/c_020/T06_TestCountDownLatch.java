@@ -31,7 +31,7 @@ public class T06_TestCountDownLatch {
         for (int i = 0; i < threads.length; i++) {
             threads[i].start();
         }
-
+        // 等 latch 的 数字变为 0 了，就不在等待在这里了，就会继续往下执行了。
         try {
             latch.await();
         } catch (InterruptedException e) {
@@ -55,7 +55,7 @@ public class T06_TestCountDownLatch {
         for (int i = 0; i < threads.length; i++) {
             threads[i].start();
         }
-
+        // 等调用 join() 的线程结束了，再往下执行。
         for (int i = 0; i < threads.length; i++) {
             try {
                 threads[i].join();

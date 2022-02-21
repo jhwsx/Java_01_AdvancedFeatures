@@ -45,6 +45,7 @@ public class T02_ReentrantLock2 {
         T02_ReentrantLock2 t1 = new T02_ReentrantLock2();
         new Thread(t1::m1).start();
         try {
+            // 休眠 1s，保证第一个线程先拿到锁
             TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();

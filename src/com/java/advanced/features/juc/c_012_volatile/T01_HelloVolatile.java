@@ -4,7 +4,9 @@ package com.java.advanced.features.juc.c_012_volatile;
  * volatile 关键字的作用
  * 这个小程序如果不加 volatile 关键字，那么死循环无法结束；加 volatile 关键字，死循环可以结束。
  *
- * 参考：https://mp.weixin.qq.com/s/DZkGRTan2qSzJoDAx7QJag
+ * 参考：
+ * 程序员小灰的文章：
+ * https://mp.weixin.qq.com/s/DZkGRTan2qSzJoDAx7QJag
  * @author wangzhichao
  * @since 2020/3/28
  */

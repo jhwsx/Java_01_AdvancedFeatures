@@ -12,7 +12,7 @@ import java.util.List;
  * 加 synchronized 且加 volatile 对比 加 synchronized 但不加 volatile 的打印结果。
  * 打印结果没有区别，都是 100000.
  *
- * 加 volatile 但不加 sychronized 对比 不加 volatile 且不加 sychronized 的打印结果
+ * 加 volatile 但不加 synchronized 对比 不加 volatile 且不加 synchronized 的打印结果
  * 前者会出现少于 100000，后者也会出现少于 100000.
  *
  * 思考：synchronized 是不是只包裹 count++ 就可以了？
@@ -23,6 +23,7 @@ import java.util.List;
  * @author wangzhichao
  * @since 2020/3/30
  */
+// 这个例子自己成为大家一起来加数。
 public class T {
     /*volatile*/ int count = 0;
 

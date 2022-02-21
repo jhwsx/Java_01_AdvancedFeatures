@@ -29,11 +29,11 @@ public class T04_ThreadState {
                 System.out.println(Thread.currentThread().getName() + " 获取锁");
                 for (int i = 0; i < 2; i++) {
                     try {
+                        System.out.println(Thread.currentThread().getName() + " Thread.sleep(500), i=" + i);
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println(i);
                 }
                 System.out.println(Thread.currentThread().getName() + " notify()");
                 T04_ThreadState.class.notify();
