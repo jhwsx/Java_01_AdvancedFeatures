@@ -29,12 +29,19 @@ public class T13_TestLockSupport_2 {
             }
         });
         t.start();
-//        try {
-//            TimeUnit.SECONDS.sleep(8);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        // 注释这块代码，则 unpark 方法在 park 之前就执行了。
+        /*try {
+            TimeUnit.SECONDS.sleep(8);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
         // 唤醒线程 t，需要把指定的线程传递给 LockSupport.unpark() 方法。
         LockSupport.unpark(t);
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("main end");
     }
 }

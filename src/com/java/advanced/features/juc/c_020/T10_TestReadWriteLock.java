@@ -52,22 +52,22 @@ public class T10_TestReadWriteLock {
     }
 
     public static void main(String[] args) {
-        // 使用 ReentrantLock
-        /*Runnable readR = () -> {
+        // 使用 ReentrantLock，效率低：读操作是串行执行的
+        Runnable readR = () -> {
             read(lock);
         };
         Runnable writeR = () -> {
             write(lock, new Random().nextInt());
-        };*/
-        // 使用 ReentrantReadWriteLock
-        Runnable readR = () -> {
+        };
+        // 使用 ReentrantReadWriteLock，效率高：读操作是并行执行的
+        /*Runnable readR = () -> {
             // 传入读锁
             read(readLock);
         };
         Runnable writeR = () -> {
             // 传入写锁
             write(writeLock, new Random().nextInt());
-        };
+        };*/
         for (int i = 0; i < 18; i++) {
             new Thread(readR).start();
         }

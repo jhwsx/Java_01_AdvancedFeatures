@@ -10,12 +10,14 @@ import java.util.concurrent.locks.LockSupport;
  * LockSupport
  * 如果一个线程处于等待状态，连续两次调用 park() 方法，就会使线程永远无法被唤醒。
  * 参考文章：https://www.cnblogs.com/takumicx/p/9328459.html
- *
+ * https://segmentfault.com/a/1190000008420938
+ * 因为凭证的数量最多为1，连续调用两次unpark和调用一次unpark效果一样，只会增加一个凭证；
+ * 而调用两次park却需要消费两个凭证。
  * @author wangzhichao
  * @since 2020/4/8
  */
 public class T13_TestLockSupport_3 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         testUnsafe();
         Thread t = new Thread(() -> {
             for (int i = 0; i < 10; i++) {
@@ -37,6 +39,11 @@ public class T13_TestLockSupport_3 {
         });
         t.start();
         LockSupport.unpark(t);
+        // 保证一次 unpark 还没有消费，就再来一次 unpark，这样是没有效果的。
+        // 注释掉下面这行休眠，那么就会永远 park。
+        TimeUnit.SECONDS.sleep(10);
+        LockSupport.unpark(t);
+        t.join();
     }
 
     /**

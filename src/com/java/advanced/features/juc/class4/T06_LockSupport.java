@@ -1,4 +1,4 @@
-package com.java.advanced.features.juc.interview;
+package com.java.advanced.features.juc.class4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class T06_LockSupport {
     }
 
     public static void main(String[] args) {
-        T04_NotifyHoldingLock c = new T04_NotifyHoldingLock();
+        T04_NotifyHoldingLock2 c = new T04_NotifyHoldingLock2();
         // 我们让 t2 线程先启动
         t2 = new Thread(() -> {
             System.out.println("t2 启动");

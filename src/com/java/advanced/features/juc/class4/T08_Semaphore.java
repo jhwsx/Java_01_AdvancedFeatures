@@ -1,4 +1,4 @@
-package com.java.advanced.features.juc.interview;
+package com.java.advanced.features.juc.class4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class T08_Semaphore {
     }
 
     public static void main(String[] args) {
-        T04_NotifyHoldingLock c = new T04_NotifyHoldingLock();
+        T04_NotifyHoldingLock2 c = new T04_NotifyHoldingLock2();
         // 限流，流量就是1
         Semaphore semaphore = new Semaphore(1);
         // 我们让 t1 线程先启动

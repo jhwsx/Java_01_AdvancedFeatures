@@ -1,4 +1,4 @@
-package com.java.advanced.features.juc.interview;
+package com.java.advanced.features.juc.class4;
 
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;

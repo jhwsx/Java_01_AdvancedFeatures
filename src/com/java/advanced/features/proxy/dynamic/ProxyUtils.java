@@ -1,6 +1,6 @@
 package com.java.advanced.features.proxy.dynamic;
 
-import sun.misc.ProxyGenerator;
+//import sun.misc.ProxyGenerator;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,7 +11,7 @@ public class ProxyUtils {
         /*
         byte[] proxyClassFile = ProxyGenerator.generateProxyClass(
                 proxyName, interfaces, accessFlags);*/
-        byte[] proxyClassFile = ProxyGenerator.generateProxyClass(
+        /*byte[] proxyClassFile = ProxyGenerator.generateProxyClass(
                 proxyName, interfaces);
         String path = ProxyUtils.class.getResource(".").getPath();
         System.out.println(path);
@@ -30,6 +30,6 @@ public class ProxyUtils {
                     e.printStackTrace();
                 }
             }
-        }
+        }*/
     }
 }

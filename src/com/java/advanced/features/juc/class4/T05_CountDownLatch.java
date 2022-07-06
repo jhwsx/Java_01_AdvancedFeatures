@@ -1,4 +1,4 @@
-package com.java.advanced.features.juc.interview;
+package com.java.advanced.features.juc.class4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,14 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 这个程序是正确的
+ * 采用 CountDownLatch
+ * 注释掉 t1 中的休眠 1 秒后，就不对了。线程1 在调用了 latch.countDown 之后并没有停下来，
+ * 直接打印完了所有的数字。
  *
  * @author wangzhichao
  * @since 2020/4/8
  */
-public class T05_CountDownLatch_1 {
+public class T05_CountDownLatch {
     volatile List lists = new ArrayList();
 
     public void add(Object o) {
@@ -23,7 +25,7 @@ public class T05_CountDownLatch_1 {
     }
 
     public static void main(String[] args) {
-        T05_CountDownLatch_1 c = new T05_CountDownLatch_1();
+        T05_CountDownLatch c = new T05_CountDownLatch();
         CountDownLatch latch = new CountDownLatch(1);
         // 我们让 t2 线程先启动
         new Thread(() -> {
@@ -52,7 +54,7 @@ public class T05_CountDownLatch_1 {
                 if (c.size() == 5) {
                     latch.countDown();
                     try {
-                        latch.await(); // 给 t1 加上门闩，让 t2 有机会执行。
+                        latch.await();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -64,5 +66,7 @@ public class T05_CountDownLatch_1 {
                 }*/
             }
         }, "t1").start();
+
+
     }
 }

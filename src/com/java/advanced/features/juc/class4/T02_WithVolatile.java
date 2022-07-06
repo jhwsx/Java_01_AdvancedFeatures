@@ -1,18 +1,22 @@
-package com.java.advanced.features.juc.interview;
+package com.java.advanced.features.juc.class4;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 线程2读取到的值未必就是线程1最新添加后的值，所以需要线程同步。
- * 由于线程与线程之间是不可见的，所以线程2中的 c.size() 方法永远检测不到是 5。
+ * 由于线程与线程之间是不可见的，所以线程2中的 c.size() 方法永远检测不到是 5，这里加 volatile 给 lists。
+ * volatile 一定要尽量去修饰普通的值，不要去修饰引用值，这是因为 volatile 修饰引用类型，这个引用对象指向
+ * 的是一个 new 出来的对象，如果这个对象里的成员变量的值改变了，是无法观察到的。
+ *
+ * 这个程序不理想，因为 volatile 修饰引用类型，这个引用对象指向的是一个 new 出来的对象，如果这个对象里的
+ * 成员变量的值改变了，是无法观察到的。
  *
  * @author wangzhichao
  * @since 2020/4/8
  */
-public class T01_WithoutVolatile {
-    List lists = new ArrayList();
+public class T02_WithVolatile {
+    volatile List lists = new ArrayList();
 
     public void add(Object o) {
         lists.add(o);
@@ -23,7 +27,7 @@ public class T01_WithoutVolatile {
     }
 
     public static void main(String[] args) {
-        T01_WithoutVolatile c = new T01_WithoutVolatile();
+        T02_WithVolatile c = new T02_WithVolatile();
         new Thread(() -> {
             for (int i = 0; i < 10; i++) {
                 c.add(new Object());
